@@ -22,10 +22,10 @@ jobs:
       - name: Build images
         run: |
           docker buildx build \
-            --tag docker.io/raasss/apache-ubuntu-20.04:${GITHUB_REF_NAME} \
-            --tag docker.io/raasss/apache-ubuntu-20.04:latest \
-            --tag quay.io/raasss/apache-ubuntu-20.04:${GITHUB_REF_NAME} \
-            --tag quay.io/raasss/apache-ubuntu-20.04:latest \
+            --tag docker.io/raasss/apache-debian-10:${GITHUB_REF_NAME} \
+            --tag docker.io/raasss/apache-debian-10:latest \
+            --tag quay.io/raasss/apache-debian-10:${GITHUB_REF_NAME} \
+            --tag quay.io/raasss/apache-debian-10:latest \
             --platform linux/amd64,linux/arm/v7,linux/arm64 .
       - name: Configure login to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin docker.io
@@ -34,10 +34,10 @@ jobs:
       - name: Push images
         run: |
           docker buildx build --push \
-            --tag docker.io/raasss/apache-ubuntu-20.04:${GITHUB_REF_NAME} \
-            --tag docker.io/raasss/apache-ubuntu-20.04:latest \
-            --tag quay.io/raasss/apache-ubuntu-20.04:${GITHUB_REF_NAME} \
-            --tag quay.io/raasss/apache-ubuntu-20.04:latest \
+            --tag docker.io/raasss/apache-debian-10:${GITHUB_REF_NAME} \
+            --tag docker.io/raasss/apache-debian-10:latest \
+            --tag quay.io/raasss/apache-debian-10:${GITHUB_REF_NAME} \
+            --tag quay.io/raasss/apache-debian-10:latest \
             --platform linux/amd64,linux/arm/v7,linux/arm64 .
       - name: Send slack notification for success
         if: success()
